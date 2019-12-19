@@ -24,10 +24,15 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/css/bootstrap.min.css",
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/jquery-3.4.1.slim.min.js",
+              "./node_modules/popper/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
