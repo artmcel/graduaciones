@@ -1,7 +1,74 @@
 <div class="container">
-    <div class="row">
-        <div class="col">
-            
+    <div class="row align-items-center">
+        <div class="col align-self-center mt-5">
+            <div class="card animated fadeInDown">
+                <div class="card-header">Obten tus boletos para la graduación</div>
+                <div class="card-body">
+                    <p>Pasos para obtener los boletos de tu Graduación:</p>
+                    <ol>
+                        <li>Ingresa tu matricula.</li>
+                        <li>Espera a que se valide tu matricula.</li>
+                        <li>Imprime y comparte tus boletos.</li>
+                    </ol>
+                    <div *ngIf="e==false">
+                        <p>He entedido los pasos, deseo continuar</p>
+                        <button (click)="entiendo()" class="btn btn-primary">Continuar.</button>
+                    </div>
+                    <form (ngSubmit)="getOne(m)" #f=ngForm *ngIf="e==true" class="animated flipInX faster">
+                        <div class="form-group mb-2">
+                            <label for="matricula" class="sr-only">Matricula</label>
+                            <input class="form-control"
+                                type="text"
+                                id="matricula"
+                                name="matricula"
+                                placeholder="Ingresa tu matricula"
+                                [(ngModel)]="matricula"
+                                maxlength="11"
+                                required
+                            >
+                            <small class="form-text text-muted">Ingrese una matricula válida, ejemplo: 12345678-12</small>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary mb-2">Enviar</button>
+                        <div></div>
+                    </form>
+
+                    <button class="btn btn-outline-success" data-toggle="modal" data-target="#imprimir">Obtener</button>
+                    <div *ngIf="!tiket">
+                    </div>
+
+                    <!--<p *ngFor="let item of data[0]"></p>
+                    <div *ngFor="let item of data[0]">
+                        <button class="btn btn-outline-success" *ngIf="item.impresion == 0" data-toggle="modal" data-target="#imprimir">Obtener</button>
+                        <button class="btn btn-outline-success" *ngIf="item.impresion == 1" data-toggle="modal" data-target="#imprimir">Re imprimir</button>
+                    </div>
+                    -->
+                </div>
+                
+            </div>
+            <!--modal-->
+            <div class="modal fade" id="imprimir" tabindex="-1" role="dialog" aria-labelledby="imprimir" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Boletos</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Compartir en redes sociales.
+                            <div class="row">
+                                <div class="col">
+                                    <button>Facebook</button>
+                                </div>
+                                <div class="col">
+                                    <button (click)="imprimir(m, i)">Imprimir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
