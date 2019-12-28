@@ -1,6 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
+const httpOptionsPlain = {
+  headers: new HttpHeaders({
+    'Accept': 'text/plain',
+    'Content-Type': 'text/plain'
+  }),
+  'responseType': 'text'
+};
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    //'Content-Type': 'application/json'
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }),
+  observe: 'response' as 'body'
+};
 
 @Injectable({
   providedIn: 'root'
@@ -9,28 +25,27 @@ export class MysqlService {
 
   data = [];
 
-  url = `http://192.168.1.123/codigos/server.php?mat=`;
-  //urlC = `http://192.168.1.123/codigos/server.php?mat=${matricula}`;
-
+  private select = `http://192.168.1.123/codigos/consultas/serverS.php?mat=`;
+  private update = `http://192.168.1.123/codigos/consultas/serverUp.php?mat=`;
+  
+  //select = `https://unimexver.edu.mx/php/consultas/serverS.php?mat=`;
+  //update = `https://unimexver.edu.mx/php/consultas/serverUp.php?mat=`;
+  
   constructor( private http: HttpClient ) { }
-
-  /*
-  getAllDataS(){
-    this.http.get(this.url).subscribe( data =>{
-      this.data.push(data);
-      console.log(data);
-    })
-  }
-  */
 
   getOneS(matricula) {
     
-    return this.http.get(`${this.url}${matricula}`);
+    return this.http.get(`${this.select}${matricula}`);
     //console.log(`${this.url}${matricula}`);
   }
 
-  updateImp(matricula, impresion) {
-    console.log(matricula, impresion);
-    //this.http.put(this.url)
+  consultaImp( matricula ) {
+    return this.http.get(`${this.select}${matricula}`);
   }
+
+  updateImp(matricula, imp) {
+    return this.http.put(`${this.update}${matricula}&imp=${imp}`, httpOptionsPlain, {responseType: 'text'});
+  }
+
+
 }
