@@ -1,7 +1,6 @@
 footer {
     text-align: center;
-    bottom: 0px;
-    position: fixed;
+    bottom: 0;
     width: 100% !important;
     color: white;
 }
@@ -20,6 +19,10 @@ footer {
         text-decoration: none;
         text-decoration-line: none;
     }
+    footer img {
+        width: 60px;
+        height: 60px;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -35,6 +38,10 @@ footer {
         color: white;
         text-decoration: none;
         text-decoration-line: none;
+    }
+    footer img {
+        width: 60px;
+        height: 60px;
     }
 }
 
@@ -52,6 +59,10 @@ footer {
         text-decoration: none;
         text-decoration-line: none;
     }
+    footer img {
+        width: 70px;
+        height: 70px;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -68,6 +79,10 @@ footer {
         text-decoration: none;
         text-decoration-line: none;
     }
+    footer img {
+        width: 80px;
+        height: 80px;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -83,5 +98,9 @@ footer {
         color: white;
         text-decoration: none;
         text-decoration-line: none;
+    }
+    footer img {
+        width: 100px;
+        height: 100px;
     }
 }
