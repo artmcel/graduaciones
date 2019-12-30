@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import  Swal  from 'sweetalert2';
 import { MysqlService } from 'src/app/services/mysql.service';
 
-import { PdfMakeWrapper, QR } from 'pdfmake-wrapper';
+import { PdfMakeWrapper, QR, Table } from 'pdfmake-wrapper';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 
 
@@ -70,6 +70,10 @@ export class HomeComponent implements OnInit {
   imprimir(){
 
     let m = this.data[0][0].matricula;
+    let f = this.data[0][0].folio;
+    let n = this.data[0][0].nombre;
+    let c = this.data[0][0].carrera;
+
     this.mysql.consultaImp(m).subscribe( data => {
       
       var imp = data[0].impresion;
@@ -91,16 +95,30 @@ export class HomeComponent implements OnInit {
 
           PdfMakeWrapper.setFonts(pdfFonts);
           const pdf = new PdfMakeWrapper();
-      
-          pdf.pageMargins([ 40, 60, 40, 60 ]);
-          pdf.header('Boletos para Graduación UNIMEX');
-          pdf.footer('UNIMEX, todos los derechos reservados.');
-          var add = {
-            content: [
-              
-            ]
-          }
-          pdf.rawContent(m);
+
+          pdf.pageSize('letter');
+          pdf.watermark('UNIMEX');
+          pdf.permissions('', {
+            copying: false,
+            modifying: false,
+          });
+
+          pdf.header('Invitación para Graduaciones UNIMEX');
+    
+          pdf.add('Querido Graduado de UNIMEX, debajo encontraras tus datos personales, por favor revisalos cuidadosamente.');
+          pdf.add(pdf.ln(1)); 
+          
+          pdf.add(
+            new Table([
+              ['Matricula', 'Folio', 'Nombre', 'Carrera'],
+              [`${m}`, `${f}`, `${n}`, `${c}`]
+            ]).end  
+          );
+          pdf.add(pdf.ln(1));
+
+          pdf.add(new QR(`${m},${n}`).fit(50).end);
+          
+          pdf.footer('Unversidad Mexicana. Todos los derechos reservados');
           let titulo = 'invitaciones-UNIMEX'+m+'.pdf';
           pdf.create().download(titulo);
 
