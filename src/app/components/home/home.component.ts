@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-
 import  Swal  from 'sweetalert2';
 import { MysqlService } from 'src/app/services/mysql.service';
 //reactive forms
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-
-//import { PdfMakeWrapper, QR, Table, Img, Txt } from 'pdfmake-wrapper';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-
 //pdf make
 import pdfMake  from 'pdfmake/build/pdfmake.js';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -33,27 +28,19 @@ export class HomeComponent implements OnInit {
       Validators.required,
       Validators.maxLength(11)
     ])
-    
   });
   
+  constructor( private mysql: MysqlService, private fb: FormBuilder ) { }
+
+  ngOnInit() {
+  }
   
-  constructor( 
-    private mysql: MysqlService,
-    private fb: FormBuilder
-    ) { }
-    
-    ngOnInit() {
-    }
-    
-    entiendo() {
-      this.e = true;
-    }
-    
+  entiendo() {
+    this.e = true;
+  }
+
   getOne() {
-    //let m = this.gradForm.value.matricula
-
-    //console.log(m)
-
+    
     this.mysql.getOneS(this.gradForm.value.matricula).subscribe( data => {
       
       Swal.fire({
@@ -83,11 +70,9 @@ export class HomeComponent implements OnInit {
         }
       });
     });
-  
-
   }
+  
   //compartir e imprimir
-
   share(){
     this.btn = true;
     window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4200%2F&amp;src=sdkpreparse');
@@ -183,61 +168,8 @@ export class HomeComponent implements OnInit {
               location.reload();
 
             },2000)
-
           }
           regresar();
-
-          
-          /*
-          PdfMakeWrapper.setFonts(pdfFonts);
-          const pdf = new PdfMakeWrapper();
-
-          pdf.pageSize('letter');
-          pdf.watermark( new Txt('UNIMEX').end );
-          pdf.header( new Txt('Graduaciones UNIMEX').alignment('center').bold().end );
-    
-          //pdf.add('Querido Graduado de UNIMEX, debajo encontraras tus datos personales, por favor revisalos cuidadosamente.');
-          pdf.add(
-            new Txt('Querido graduado de UNIMEX, debajo encontrarás tus datos personales, por favor revisalos cuidadosamente. Si exite algun error llama a tu plantel inmediatamente.')
-            .alignment('justify').end
-          );
-          pdf.add(pdf.ln(1)); 
-          
-          pdf.add(
-            new Table([
-              ['Matricula', 'Folio', 'Nombre', 'Carrera'],
-              [`${m}`, `${f}`, `${n}`, `${c}`]
-            ]).end  
-          );
-          pdf.add(pdf.ln(1));
-
-          pdf.add(new QR(`${m},${n}`).fit(60).end);
-          */
-
-          //img
-          /*
-          async function imagen(){
-            const pdf = new PdfMakeWrapper();
-            //pdf.add( await new Img('http://192.168.1.123/veracruz/img/about/message/principal.png').build() );
-            pdf.add( 
-              await new Img('data:image/jpeg;base64,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')
-              .build()
-            );
-            //pdf.create().download();
-          }
-
-          pdf.add(imagen());
-          pdf.add(
-            new Img('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABIODg4QDhUQEBUeExETHiMaFRUaIyIXFxcXFyIRDAwMDAwMEQwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/2wBDARQTExYZFhsXFxsUDg4OFBQODg4OFBEMDAwMDBERDAwMDAwMEQwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCABGAEYDASIAAhEBAxEB/8QAGwAAAgMBAQEAAAAAAAAAAAAAAAQDBQYBAgf/xABIEAACAQIDAwcFCwgLAAAAAAACAwEEEgAREwUiIxQhMjNDU2MGMUFzsyQ0QkRRUmJygoOTFWGBkqOyw9NUZHF0lLTC0uLj8P/EABgBAAMBAQAAAAAAAAAAAAAAAAECAwAE/8QAMhEAAgEDAgEICQUAAAAAAAAAAAERAhIhMYIDEzJBQmFykqIiQ1FxgYORocLR0uHw8v/aAAwDAQACEQMRAD8A3GI31CadUtecLWPnKcFRUKpkm9s2rCM5nGErq6q2tVfNWOcgEzkCgjpucftG4pw+Hd2UrVi1VR3izrvKphTIUQQA94fOU/UV0AxVG3bFTF7GMsn0mWkH2dQkqxMFIa6bXpLJm0jFh9cwVe+WUSN5VOCfE92+rwPp6eopEsTJMrIESbMXME7umL6g+El6vZ46EqVouy4k5erE4p6mJzFoXfmcu72uGQr9s0ORSxkB6L+IuftnqLwxtbOsthC85giLOZUJCBQFlKC0OM2AuzFUE1VMywb1HPNZlMXZ+CXW4K9JZt7oHh4k1OzvKhLZhdaMJOeaGD1f2+6xoomCiJic4nniY82MHVbNZFsGAqfIxMyHUSRfFml1dHWbv92b4OGNh7ZZRtikqpnk8zbvedJfy+8xGvhJqaPCPTW1ir6m0wYM4yz9Hy4MQKmS8qq+TcNEE7i4g2fnOerH7tftMIqo6oFwKUQ8QKCqQmesKI1OS/P0aMD/AMazEBMio2qb2c4Xm2Y+gq99n6isP8kraUVkVTkNSUES5EuY2b9U9N/A1Eo+NfhY64tpVJDVtkItShBSJmNG+YldOWRFmUWtY4wIGci4enw9Ntbp93hN0y0iBrS4cTMBAxAREdwoG6XQx026oSwg4TGTHN2QAILprC7PRA8XtDs6m/JTWmAveEEMM5+riNzS+4Z/DwW1Tl9LMlODODTrmQ4nMycgyHMvPYWoN3DxOh0BExLSYlfPaQ80T2fJ2a2rTv7vRxPQUjOVIA13acyJiWeWZnojqW/W1MN7eoaWndGlEJSIwRrHmk2FctYp+7X/AOZgupTb7QRiTkwyuFVOdRI0Nupdlm0oCB9ytUvha1KjieIvUquJhCvWo7zUeoSMoMvORLncSxpDuHUUzPctQ3tvc7sdXJkYqIbIevIQjdyYqW8m+n/V/VvxPnsu5SKXODbutz3xyeNmiup4fvNun2HW9pgLD/QOo6jabG+TlQF0w6ngV3emVMIFD+z1E4MUKWkCqhXehAzH0hYlv+jBjcmp33+UFz8tp6ps4c2PTpNj9Nh4tJoopxG2plsFdC13xPSXViLOTgZ+B+NhSsCKHbDIONwWTMx4TP8Aobj3AUNImTIZisUdqrTuvMJE+UMRp8GkYHicbs8F5hrrIyxPYKL6KhGD1LSKCCY80yXSA/oL7zGgS9/IqdSZmICJ1BmLBbdJAYcPoWdnxsVT5UkxkDIVGG4BTOVs3A5Rr0T4ijJimYjGpQIwMSMREZfC/k4FSu6ApwW8UDaax6yGT8473PEzFt5b3ifiYi2mxrUU4yRE1VwyyBjMs7bbSaStI+77XSwhLxHM5kYgvT/yAj1fwvW48TUpmYm4c4mJicimcxm4OkvAVLmdYNK0PFNbNRTW5xY6YK6c57Np9H7zDYLrBUgZ0LINN4AIcoATJZ0rKg7NTi+sxynHUDODkzaUgm6bYiSggrGgTgV1FMz8bSx16qiiqTgmyynWENCZnnm26m2cpvqXH/FwW8wZFXExyiS+Dfn+i/Biamp5Ojq3z0UgEZ/SNiR/c1MGHlTG0X/Ro/KjZ0sWNauMyVFrYj5nwGfd4oaWoZMQxIiVYkLRui6SXHQcgS+OUf8Al/U4+glEFEiUZxMZTE+aYnGL2xsNtEyamkiZp87t3ppn+X4uIcKtNWvb+0pXTm5fE5UU6AoBebuUg0ilpTO8b8w39m3D2fE12N4FRpeqwk2lfBDAQJZBaIFGi2RK7iMpn2ajPERrY4uqSxq2Pi1qygoLKSSyc7vdNMvqtTtW03Wdxiat5VWLUIjr6d5GYFDbmNLVYVg8ZSuhpq08VUr+RMMgCnrxNZTTzOl5rx3J5yLi3WYmpqI2xCJGGTqZ2J3puKOqqa0b6elRu+K7CXI6uebQZ/ZYX+3DdHNXQN1JYCI+EBzffEfOo1Xs9l6zBemGpAvcNKnZ9RSFDRI6iclCgIGCSUSfJuQ3ledN/Ses71+K10iADSKm/Kc2EPPDG9AQV89NP1au84rMdOojMgphmJbM3smOKy6d5axD3uk+5V943Gk2FsGUSNXVjxY51qn4HiM8X2eFbVCbe2kZJ1YXiJV7GYvYLKQffLohh/XGQcKf2WlgxfYMc3KVeblCtq+1oYJyy5/NgwYQYym00+TbWFbURTuid6ViRrmfqKDS/CZihchAFwqkG/JkLBL9ViMGDHZw5j1m+0hVr1dpHk3LeIoH5Zuy/dwxT0tCc5vrAUPpgQaZexAMGDDuYxO238xV/ZNRsYNggdtGyG1GXTZEwyfU6wK/Y4vcGDHHxOd1vmc4vTp0bQwYMGEGP//Z').build()
-            );       
-          */
-            
-            /*
-          pdf.footer( new Txt('Universidad Mexicana. Todos los derechos reservados').alignment('center').end);
-          let titulo = 'invitaciones-UNIMEX'+m+'.pdf';
-          pdf.create().download(titulo);
-          */
-
         }, error => {
           console.log(error);
         });

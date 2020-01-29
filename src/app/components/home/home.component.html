@@ -12,7 +12,7 @@
                     </ol>
                     <div>
                         <p>He entedido los pasos, deseo continuar</p>
-                        <button (click)="entiendo()" class="btn btn-primary">
+                        <button (click)="entiendo()" *ngIf="!e" class="btn btn-primary">
                             Continuar. &nbsp;<i class="far fa-thumbs-up"></i>
                         </button>
                     </div>
@@ -50,22 +50,6 @@
                                 <i class="fas fa-exclamation-triangle"></i>
                                 Recuerda que solo podras imprimir tus boletos <strong>una vez.</strong>
                             </div>
-                            <!--
-                            <div class="row">
-                                <div class="col">
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4200%2F&amp;src=sdkpreparse">
-                                        <button class="btn btn-outline-primary">
-                                            <i class="fas fa-share-alt"></i>&nbsp;Compartir
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <button class="btn btn-outline-success" (click)="imprimir(data)">
-                                        <i class="fas fa-print"></i>&nbsp;Imprimir
-                                    </button>
-                                </div>
-                            </div>
-                            -->
                             <div class="row">
                                 <div class="col">
                                     <button (click)="share()" class="btn btn-outline-primary">
@@ -82,6 +66,7 @@
                     </div>
                 </div>
             </div>
+            <!--End modal-->
         </div>
     </div>
 </div>
