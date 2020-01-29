@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 
 import  Swal  from 'sweetalert2';
 import { MysqlService } from 'src/app/services/mysql.service';
+//reactive forms
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 //import { PdfMakeWrapper, QR, Table, Img, Txt } from 'pdfmake-wrapper';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -10,7 +12,6 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 //pdf make
 import pdfMake  from 'pdfmake/build/pdfmake.js';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
 
 
 @Component({
@@ -21,15 +22,24 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class HomeComponent implements OnInit {
 
   e : boolean = false;
-  matricula: string;
+  //matricula: string;
   impresion : any;
   data = [];
   tiket : boolean ;
   btn: boolean = false;
+  //reactive forms
+  gradForm = new FormGroup({
+    matricula : new FormControl('', [
+      Validators.required,
+      Validators.maxLength(11)
+    ])
+    
+  });
   
   
   constructor( 
-    private mysql: MysqlService
+    private mysql: MysqlService,
+    private fb: FormBuilder
     ) { }
     
     ngOnInit() {
@@ -39,9 +49,12 @@ export class HomeComponent implements OnInit {
       this.e = true;
     }
     
-  getOne( form: NgForm ) {
+  getOne() {
+    //let m = this.gradForm.value.matricula
 
-    this.mysql.getOneS(this.matricula).subscribe( data => {
+    //console.log(m)
+
+    this.mysql.getOneS(this.gradForm.value.matricula).subscribe( data => {
       
       Swal.fire({
         title: 'Correcto',
@@ -70,6 +83,7 @@ export class HomeComponent implements OnInit {
         }
       });
     });
+  
 
   }
   //compartir e imprimir

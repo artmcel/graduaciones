@@ -7,8 +7,13 @@ import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/shared/nav/nav.component';
 import { FormsModule } from '@angular/forms';
 
+// reactive forms
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { FormComponent } from './components/form/form.component';
 
 
 @NgModule({
@@ -16,13 +21,15 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     AppComponent,
     HomeComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

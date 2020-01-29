@@ -1,0 +1,10 @@
+<form class="animated flipInX" [formGroup]="gradForm" (ngSubmit)="getOne()">
+    <div class="col-12 col-md-6 col-sm-12">
+        <div class="form-group mb-2">
+            <label for="name">Matricula</label>
+            <input class="form-control" type="text" formControlName="matricula">
+        </div>
+        <small class="form-text text-muted">Ingrese una matricula válida, ejemplo: 12345678-12</small>
+        <button class="btn btn-outline-primary mb-2" type="submit" [disabled]="!gradForm.valid">Enviar</button>
+    </div>
+</form>

@@ -10,32 +10,25 @@
                         <li>Espera a que se valide tu matricula.</li>
                         <li>Comparte con tus amigos e imprime tus boletos</li>
                     </ol>
-                    <div *ngIf="e==false">
+                    <div>
                         <p>He entedido los pasos, deseo continuar</p>
                         <button (click)="entiendo()" class="btn btn-primary">
                             Continuar. &nbsp;<i class="far fa-thumbs-up"></i>
                         </button>
                     </div>
-                    <form (ngSubmit)="getOne(m)" #f=ngForm *ngIf="e==true" class="animated flipInX faster">
-                        <div class="col-12 col-md-6 col-sm-12">
-                            <div class="form-group mb-2">
-                                <label for="matricula" class="sr-only">Matricula</label>
-                                <input class="form-control"
-                                    type="text"
-                                    id="matricula"
-                                    name="matricula"
-                                    placeholder="Ingresa tu matricula"
-                                    [(ngModel)]="matricula"
-                                    maxlength="11"
-                                    required
-                                >
+                    <div *ngIf="e">
+                        <form class="animated flipInX" [formGroup]="gradForm" (ngSubmit)="getOne()">
+                            <div class="col-12 col-md-6 col-sm-12">
+                                <div class="form-group mb-2">
+                                    <label for="name">Matricula</label>
+                                    <input class="form-control" type="text" formControlName="matricula">
+                                </div>
+                                <small class="form-text text-muted">Ingrese una matricula válida, ejemplo: 12345678-12</small>
+                                <button class="btn btn-outline-primary mb-2" type="submit" [disabled]="!gradForm.valid">Enviar</button>
                             </div>
-                            <small class="form-text text-muted">Ingrese una matricula válida, ejemplo: 12345678-12</small>
-                            <br>
-                            <button type="submit" class="btn btn-outline-primary mb-2">Enviar</button>
-                        </div>
-                    </form>
-                    <button *ngIf="tiket === true" class="btn btn-outline-success mt-1 ml-3" data-toggle="modal" data-target="#imprimir">Obtener</button>
+                        </form>
+                    </div>
+                    <button *ngIf="tiket" class="btn btn-outline-success mt-1 ml-3" data-toggle="modal" data-target="#imprimir">Obtener</button>
                 </div>
                 
             </div>
@@ -80,7 +73,7 @@
                                     </button>
                                 </div>
                                 <div *ngIf="btn == true" class="col">
-                                    <button class="btn btn-outline-success" (click)="imprimir(data)">
+                                    <button class="btn btn-outline-success" (click)="imprimir()">
                                         <i class="fas fa-print"></i>&nbsp;Imprimir
                                     </button>
                                 </div>
