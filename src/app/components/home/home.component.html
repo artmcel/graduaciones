@@ -1,9 +1,10 @@
 <div class="container">
-    <p>Sigue los pasos para obtener tus boletos.</p>
+    <!--<p>Sigue los pasos para obtener tus boletos.</p>-->
     <div class="row align-items-center">
         <div class="col align-self-center mt-5 mb-5">
             <div class="card animated fadeInDown shadow p-3 mb-5 bg-white rounded">
                 <div class="card-body">
+                    <!---
                     <p>Pasos para obtener los boletos de tu Graduación:</p>
                     <ol>
                         <li>Ingresa tu matricula.</li>
@@ -16,23 +17,48 @@
                             Continuar. &nbsp;<i class="far fa-thumbs-up"></i>
                         </button>
                     </div>
-                    <div *ngIf="e">
+                    -->
+                    <p>Comparte en <strong>Facebook</strong> para que todos tus amigos se enteren de que ¡lo lograste!. <br>
+                        Invitalos a que sigan la transmisión por Facebook Live que se realizará el día del evento. <br>
+                        Obtén aquí los boletos para tus invitados <small>( 3 boletos por egresado )</small>.
+                    </p>
+                    <div *ngIf="!e">
                         <form class="animated flipInX" [formGroup]="gradForm" (ngSubmit)="getOne()">
-                            <div class="col-12 col-md-6 col-sm-12">
+                            <div class="col-12 col-md-6">
                                 <div class="form-group mb-2">
                                     <label for="name">Matricula</label>
                                     <input class="form-control" type="text" formControlName="matricula">
                                 </div>
-                                <small class="form-text text-muted">Ingrese una matricula válida, ejemplo: 12345678-12</small>
-                                <button class="btn btn-outline-primary mb-2" type="submit" [disabled]="!gradForm.valid">Enviar</button>
+                                <div>
+                                    <small class="form-text text-muted">Ingrese una matricula válida, ejemplo: 12345678-12</small>
+                                    <!--<button class="btn btn-outline-primary mb-2" type="submit" [disabled]="!gradForm.valid">Enviar</button>-->
+                                    <button class="btn btn-outline-primary" type="submit" [disabled]="!gradForm.valid">
+                                        <i class="fas fa-share-alt"></i>&nbsp;Compartir e <i class="fas fa-print"></i>&nbsp;Imprimir
+                                    </button>
+
+                                </div>
                             </div>
                         </form>
                     </div>
-                    <button *ngIf="tiket" class="btn btn-outline-success mt-1 ml-3" data-toggle="modal" data-target="#imprimir">Obtener</button>
+                    <!--<button *ngIf="tiket" class="btn btn-outline-success mt-1 ml-3" data-toggle="modal" data-target="#imprimir">Obtener</button>
+                    <div class="row text-center" *ngIf="tiket">
+                        <div class="col">
+                            <button (click)="share()" class="btn btn-outline-primary">
+                                <i class="fas fa-share-alt"></i>&nbsp;Compartir e <i class="fas fa-print"></i>&nbsp;Imprimir
+                            </button>
+                        </div>
+                        
+                        <div *ngIf="btn == true" class="col">
+                            <button class="btn btn-outline-success" (click)="imprimir()">
+                                <i class="fas fa-print"></i>&nbsp;Imprimir
+                            </button>
+                        </div>
+                    </div>
+                    -->
                 </div>
                 
             </div>
-            <!--modal-->
+            <!--modal
             <div class="modal fade" id="imprimir" tabindex="-1" role="dialog" aria-labelledby="imprimir" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -43,8 +69,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Comparte con tus amigos a través de <strong>Facebook</strong> este logro tan importante en tu vida,
-                                después imprimie tus boletos para tu graduación UNIMEX&reg;
+                            <p>Comparte en <strong>Facebook</strong> para que todos tus amigos se enteren de que ¡lo lograste!. <br>
+                                Invitalos a que sigan la transmisión por Facebook Live que se realizará el día del evento. <br>
+                                Obtén aquí los boletos para tus invitados <small>( 3 boletos por egresado )</small>.
                             </p>
                             <div class="alert alert-info" role="alert">
                                 <i class="fas fa-exclamation-triangle"></i>
@@ -66,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <!--End modal-->
+            End modal-->
         </div>
     </div>
 </div>

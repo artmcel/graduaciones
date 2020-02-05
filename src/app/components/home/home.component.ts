@@ -35,9 +35,11 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
   
+  /*
   entiendo() {
     this.e = true;
   }
+  */
 
   getOne() {
     
@@ -51,9 +53,13 @@ export class HomeComponent implements OnInit {
         allowOutsideClick: false,
         showConfirmButton: false,
         onClose: () => {
-          this.tiket = true;
+          //this.tiket = true;
           this.data.push(data);
           console.log(data);
+          //this.e = true;
+          //this.share();
+          window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4200%2F&amp;src=sdkpreparse','','width=360,height=640');
+          this.imprimir();
         }
       });
     }, error => {
@@ -67,15 +73,10 @@ export class HomeComponent implements OnInit {
         onClose: ()=> {
           //this.tiket = false;
           console.log(this.tiket = false );
+          location.reload();
         }
       });
     });
-  }
-  
-  //compartir e imprimir
-  share(){
-    this.btn = true;
-    window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4200%2F&amp;src=sdkpreparse');
   }
 
   imprimir(){
