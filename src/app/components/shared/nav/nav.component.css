@@ -6,23 +6,29 @@
 @media (max-width: 575.98px) {
     
     .navbar img {
-        width: 60px;
+        /*width: 60px;*/
         height: 60px;
+    }
+    .navbar {
+        justify-content: center;
     }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
     
     .navbar img {
-        width: 60px;
+        /*width: 60px;*/
         height: 60px;
+    }
+    .navbar {
+        justify-content: center;
     }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
     
     .navbar img {
-        width: 70px;
+        /*width: 70px;*/
         height: 70px;
     }
 }
@@ -30,7 +36,7 @@
 @media (min-width: 992px) and (max-width: 1199.98px) {
     
     .navbar img {
-        width: 80px;
+        /*width: 80px;*/
         height: 80px;
     }
 }
@@ -38,7 +44,7 @@
 @media (min-width: 1200px) {
     
     .navbar img {
-        width: 90px;
+        /*width: 90px;*/
         height: 90px;
     }
 }
