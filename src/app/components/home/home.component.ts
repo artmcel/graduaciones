@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
           console.log(data);
           //this.e = true;
           //this.share();
-          window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4200%2F&amp;src=sdkpreparse','','width=360,height=640');
+          window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Funimexver.edu.mx%2Fprueba-facebook&amp;src=sdkpreparse','','width=360,height=640');
           this.imprimir();
         }
       });
