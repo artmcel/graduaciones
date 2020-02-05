@@ -124,7 +124,8 @@ export class HomeComponent implements OnInit {
                     [{text:'Matricula', bold: true}, {text:'Folio', bold: true}, {text: 'Nombre', bold: true}, {text: 'Carrera', bold: true}, {text: 'Codigo', bold: true}],
                     [`${m}`, `${f}`, `${n}`, `${c}`, {qr: `${m},${n},'Boleto:1'`, fit:75, foreground: '#004b93', background: 'white'}]
                   ]
-                }
+                },
+                layout: 'noBorders'
               },
               {text: '\n\n'},
               {
@@ -133,7 +134,8 @@ export class HomeComponent implements OnInit {
                     [{text:'Matricula', bold: true}, {text:'Folio', bold: true}, {text: 'Nombre', bold: true}, {text: 'Carrera', bold: true}, {text: 'Codigo', bold: true}],
                     [`${m}`, `${f}`, `${n}`, `${c}`, {qr: `${m},${n},'Boleto:2'`, fit:75, foreground: '#004b93', background: 'white'}]
                   ]
-                }
+                },
+                layout: 'noBorders'
               },
               {text: '\n\n'},
               {
@@ -142,7 +144,8 @@ export class HomeComponent implements OnInit {
                     [{text:'Matricula', bold: true}, {text:'Folio', bold: true}, {text: 'Nombre', bold: true}, {text: 'Carrera', bold: true}, {text: 'Codigo', bold: true}],
                     [`${m}`, `${f}`, `${n}`, `${c}`, {qr: `${m},${n},'Boleto:3'`, fit:75, foreground: '#004b93', background: 'white'}]
                   ]
-                }
+                },
+                layout: 'noBorders'
               }
             ],
             background: [
