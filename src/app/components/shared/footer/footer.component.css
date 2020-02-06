@@ -1,12 +1,10 @@
-footer {
-    text-align: center;
-    bottom: 0;
-    width: 100% !important;
-    color: white;
-}
-
 @media (max-width: 575.98px) {
     footer {
+        position: relative;
+        text-align: center;
+        bottom: 0;
+        width: 100% !important;
+        color: white;
         background-color: #004b93;
     }
     .fab, .fas {
@@ -27,6 +25,11 @@ footer {
 
 @media (min-width: 576px) and (max-width: 767.98px) {
     footer {
+        position: fixed;
+        text-align: center;
+        bottom: 0;
+        width: 100% !important;
+        color: white;
         background-color: #004b93;
     }
     .fab, .fas {
@@ -47,6 +50,11 @@ footer {
 
 @media (min-width: 768px) and (max-width: 991.98px) {
     footer {
+        position: fixed;
+        text-align: center;
+        bottom: 0;
+        width: 100% !important;
+        color: white;
         background-color: #004b93;
     }
     .fab, .fas {
@@ -67,6 +75,11 @@ footer {
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
     footer {
+        position: fixed;
+        text-align: center;
+        bottom: 0;
+        width: 100% !important;
+        color: white;
         background-color: #004b93;
     }
     .fab, .fas {
@@ -87,6 +100,11 @@ footer {
 
 @media (min-width: 1200px) {
     footer {
+        position: fixed;
+        text-align: center;
+        bottom: 0;
+        width: 100% !important;
+        color: white;
         background-color: #004b93;
     }
     .fab, .fas {
