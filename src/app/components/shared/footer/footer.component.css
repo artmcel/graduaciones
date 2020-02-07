@@ -1,4 +1,4 @@
-@media (max-width: 575.98px) {
+@media (max-width: 575.98px) and (orientation: portrait) {
     footer {
         position: relative;
         text-align: center;
@@ -23,9 +23,33 @@
     }
 }
 
-@media (min-width: 576px) and (max-width: 767.98px) {
+@media (min-width: 576px), (max-width: 767.98px) and (orientation: portrait) {
     footer {
-        position: fixed;
+        position: relative;
+        text-align: center;
+        bottom: 0;
+        width: 100% !important;
+        color: white;
+        background-color: #004b93;
+    }
+    .fab, .fas {
+        color: white;
+        margin-right: 2.5px;
+
+    }
+    footer a {
+        color: white;
+        text-decoration: none;
+        text-decoration-line: none;
+    }
+    footer img {
+        width: 60px;
+        height: 60px;
+    }
+}
+@media (min-width: 576px), (max-width: 767.98px) and (orientation: landscape) {
+    footer {
+        position: relative;
         text-align: center;
         bottom: 0;
         width: 100% !important;
